@@ -1,22 +1,37 @@
 package com.parkit.service.impl;
 
+import com.parkit.entity.Booking;
+import com.parkit.entity.ParkingLot;
+import com.parkit.misc.BookingRequest;
+import com.parkit.repository.BookingRepository;
+import com.parkit.repository.ParkingLotRepository;
+import com.parkit.service.BookingService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
-
-import com.parkit.entity.Booking;
-import com.parkit.repository.BookingRepository;
-import com.parkit.service.BookingService;
 
 @Service
 public class BookingServiceImpl implements BookingService {
 
-	@Autowired
-	BookingRepository bookingRepository;
-	
-	@Override
-	public Booking bookSlot(Booking booking) {
-		// TODO Auto-generated method stub
-		return bookingRepository.save(booking);
-	}
+    @Autowired
+    private BookingRepository bookingRepository;
 
+    @Autowired
+    private ParkingLotRepository parkingLotRepository;
+
+    @Override
+    public Booking bookSlot(BookingRequest bookingRequest) {
+        ParkingLot parkingLot = parkingLotRepository.findByLocation(bookingRequest.getLocation());
+        if (parkingLot == null || parkingLot.getEmptySlots() == 0) {
+            return null;
+        }
+        Booking booking = new Booking();
+        booking.setLocation(bookingRequest.getLocation());
+        booking.setBookingDate(bookingRequest.getDate());
+        booking.setBookingTime(bookingRequest.getTime());
+        bookingRepository.save(booking);
+        parkingLot.setOccupiedSlots(parkingLot.getOccupiedSlots() + 1);
+        parkingLot.setEmptySlots(parkingLot.getTotalSlots() - parkingLot.getOccupiedSlots());
+        parkingLotRepository.save(parkingLot);
+        return booking;
+    }
 }
