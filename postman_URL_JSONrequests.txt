@@ -27,7 +27,8 @@ http://localhost:8080/bookslot
 {
    "date": "2023-11-30",
     "time": "05:36:00",
-    "location" : "nariman point"
+    "location" : "nariman point",
+    "vehicalId" : "MH01DN9660"
 }
 
 
