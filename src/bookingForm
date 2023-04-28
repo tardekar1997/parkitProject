@@ -1,0 +1,51 @@
+import React, { useState } from "react";
+import './bookingForm.css';
+
+function BookingForm() {
+  const [location, setLocation] = useState("");
+  const [date, setDate] = useState("");
+  const [time, setTime] = useState("");
+
+  const handleSubmit = (event) => {
+    event.preventDefault();
+    const bookingData = {
+      location: location,
+      date: date,
+      time: time,
+    };
+
+    // Send the booking data to the backend API using fetch or axios
+  };
+
+  return (
+    <form onSubmit={handleSubmit}>
+      <label htmlFor="location">Location:</label>
+      <input
+        type="text"
+        id="location"
+        value={location}
+        onChange={(event) => setLocation(event.target.value)}
+      />
+
+      <label htmlFor="date">Date:</label>
+      <input
+        type="date"
+        id="date"
+        value={date}
+        onChange={(event) => setDate(event.target.value)}
+      />
+
+      <label htmlFor="time">Time:</label>
+      <input
+        type="time"
+        id="time"
+        value={time}
+        onChange={(event) => setTime(event.target.value)}
+      />
+
+      <button type="submit">Book Slot</button>
+    </form>
+  );
+}
+
+export default BookingForm;
