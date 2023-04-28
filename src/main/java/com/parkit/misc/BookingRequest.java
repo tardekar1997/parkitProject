@@ -1,3 +1,4 @@
+
 package com.parkit.misc;
 
 import java.time.LocalDate;
@@ -8,6 +9,8 @@ public class BookingRequest {
     private String location;
     private LocalDate date;
     private LocalTime time;
+    private String VehicleId;
+	private String User;
     
 	public String getLocation() {
 		return location;
@@ -26,6 +29,18 @@ public class BookingRequest {
 	}
 	public void setTime(LocalTime time) {
 		this.time = time;
+	}
+	public String getVehicleId() {
+		return VehicleId;
+	}
+	public void setVehicleId(String vehicleId) {
+		VehicleId = vehicleId;
+	}
+	public String getUser() {
+		return User;
+	}
+	public void setUser(String user) {
+		User = user;
 	}
     
     

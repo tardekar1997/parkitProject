@@ -17,13 +17,13 @@ public class ParkingLotController {
 	@Autowired
 	ParkingLotService parkingLotService;
 	
-	@PostMapping("addplot")
+	@PostMapping("/addplot")
 	ResponseEntity<ParkingLot> createLot(@RequestBody ParkingLot plot){
 		ParkingLot newLot= parkingLotService.addPLot(plot);
 		return new ResponseEntity<>(newLot,HttpStatus.CREATED);
 			}
 	
-	@PutMapping("updateLot/{plotId}/newTotalSlots/{newTotalSlots}")
+	@PutMapping("/updateLot/{plotId}/newTotalSlots/{newTotalSlots}")
 	ResponseEntity<ParkingLot> updateTotalSlots(@PathVariable int plotId,
 												@PathVariable int newTotalSlots){
 		

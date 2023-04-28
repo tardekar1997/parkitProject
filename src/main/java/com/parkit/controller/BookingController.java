@@ -1,6 +1,7 @@
 package com.parkit.controller;
 
 import com.parkit.entity.Booking;
+import com.parkit.entity.User;
 import com.parkit.misc.BookingRequest;
 import com.parkit.service.BookingService;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -17,8 +18,8 @@ public class BookingController {
     private BookingService bookingService;
 
     @PostMapping("/bookslot")
-    public ResponseEntity<String> bookslot(@RequestBody BookingRequest bookingRequest) {
-        Booking booking = bookingService.bookSlot(bookingRequest);
+    public ResponseEntity<String> bookslot(@RequestBody BookingRequest bookingRequest, User user) {
+        Booking booking = bookingService.bookSlot(bookingRequest, user);
         if (booking == null) {
             return new ResponseEntity<>("No parking lot found for location: " + bookingRequest.getLocation(),
                     HttpStatus.NOT_FOUND);

@@ -3,6 +3,7 @@ package com.parkit.controller;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
+import org.springframework.web.bind.annotation.CrossOrigin;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RestController;
@@ -11,6 +12,7 @@ import com.parkit.entity.User;
 import com.parkit.service.UserService;
 
 @RestController
+@CrossOrigin(origins = "http://localhost:3000")
 public class UserController {
 	
 	@Autowired
@@ -32,8 +34,5 @@ public class UserController {
 			}
 		else 
 			return new ResponseEntity<>("invalid credentials", HttpStatus.UNAUTHORIZED);
-		
-		
-	}
-	
+			}	
 }

@@ -27,10 +27,12 @@ public class Booking {
 	
 	private String Location;
 	
+	private String VehicleId;
+	private String User;	
+	
 	public int getBkId() {
 		return BkId;
-	}
-	
+	}	
 	
 	public LocalDate getBookingDate() {
 		return BookingDate;
@@ -50,6 +52,22 @@ public class Booking {
 	}
 	public void setLocation(String location) {
 		Location = location;
+	}
+
+	public String getVehicleId() {
+		return VehicleId;
+	}
+
+	public void setVehicleId(String vehicleId) {
+		VehicleId = vehicleId;
+	}
+
+	public String getUser() {
+		return User;
+	}
+
+	public void setUser(String user) {
+		User = user;
 	}
 	
 }
